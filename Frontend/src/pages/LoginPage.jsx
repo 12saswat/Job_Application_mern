@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Rocket, Mail, Lock, UserPlus, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
@@ -14,7 +20,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://job-application-mern-bv2m.vercel.app/user/login", {
+      const response = await fetch("http://localhost:4000/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -23,7 +29,7 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (data.success) {
-         // ✅ Save user info and token
+        // ✅ Save user info and token
         localStorage.setItem(
           "user",
           JSON.stringify({
@@ -31,9 +37,9 @@ export default function LoginPage() {
             role: data.user.role, // "admin" or "user"
           })
         );
-                // ✅ Save token
-                localStorage.setItem("token", data.token);  
-                // Redirect
+        // ✅ Save token
+        localStorage.setItem("token", data.token);
+        // Redirect
         if (data.user.role === "admin") {
           navigate("/admin-dashboard");
         } else {
@@ -56,14 +62,19 @@ export default function LoginPage() {
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <Rocket className="w-8 h-8 text-blue-600" />
-              <span className="text-2xl font-bold text-blue-600">JobConnect</span>
+              <span className="text-2xl font-bold text-blue-600">
+                JobConnect
+              </span>
             </div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">Find Your Dream Job Today</h1>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              Find Your Dream Job Today
+            </h1>
             <p className="text-lg text-gray-600">
-              Join thousands of professionals who found their perfect career match through our platform.
+              Join thousands of professionals who found their perfect career
+              match through our platform.
             </p>
           </div>
-          
+
           <div className="space-y-4">
             <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
               <div className="p-2 rounded-full bg-blue-100 text-blue-600">
@@ -71,17 +82,21 @@ export default function LoginPage() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-800">Instant Updates</h3>
-                <p className="text-sm text-gray-500">Get notified when employers view your resume</p>
+                <p className="text-sm text-gray-500">
+                  Get notified when employers view your resume
+                </p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
               <div className="p-2 rounded-full bg-indigo-100 text-indigo-600">
                 <UserPlus className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="font-medium text-gray-800">Easy Application</h3>
-                <p className="text-sm text-gray-500">One-click apply to multiple jobs</p>
+                <p className="text-sm text-gray-500">
+                  One-click apply to multiple jobs
+                </p>
               </div>
             </div>
           </div>
@@ -91,16 +106,20 @@ export default function LoginPage() {
         <div className="w-full md:w-1/2">
           <Card className="shadow-xl border-0">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-gray-800">Welcome Back</CardTitle>
+              <CardTitle className="text-2xl font-bold text-gray-800">
+                Welcome Back
+              </CardTitle>
               <CardDescription className="text-gray-500">
                 Log in to access your dashboard and continue your job search
               </CardDescription>
             </CardHeader>
-            
+
             <CardContent>
               <form onSubmit={handleLogin} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Email</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Email
+                  </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
@@ -112,9 +131,11 @@ export default function LoginPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Password</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Password
+                  </label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
@@ -129,7 +150,11 @@ export default function LoginPage() {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     >
-                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      {showPassword ? (
+                        <EyeOff className="h-4 w-4" />
+                      ) : (
+                        <Eye className="h-4 w-4" />
+                      )}
                     </button>
                   </div>
                   <div className="flex justify-end">
@@ -142,17 +167,15 @@ export default function LoginPage() {
                     </button>
                   </div>
                 </div>
-                
+
                 <Button
                   type="submit"
                   className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg"
                 >
                   Login to Continue
                 </Button>
-                
-            
               </form>
-              
+
               <p className="mt-6 text-sm text-center text-gray-600">
                 Don't have an account?{" "}
                 <button

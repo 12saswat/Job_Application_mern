@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("https://job-application-mern-bv2m.vercel.app/user/getApplicants", {
+      const response = await fetch("http://localhost:4000/user/getApplicants", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

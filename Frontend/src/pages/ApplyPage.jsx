@@ -101,7 +101,7 @@ export default function UploadResumePage() {
 
       if (response.ok) {
         localStorage.removeItem("selectedJob");
-        navigate("/profile"); 
+        navigate("/profile");
       } else {
         const result = await response.json();
         alert(result.error || "Submission failed. Please try again.");

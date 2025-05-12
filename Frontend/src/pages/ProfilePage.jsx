@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -13,7 +19,7 @@ export default function ProfilePage() {
       if (!token) return;
 
       try {
-        const response = await fetch("https://job-application-mern-bv2m.vercel.app/user/profile", {
+        const response = await fetch("http://localhost:4000/user/profile", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,17 +103,25 @@ export default function ProfilePage() {
                 />
               </svg>
             </div>
-            <h3 className="mt-3 text-lg font-medium text-gray-900">No applications yet</h3>
+            <h3 className="mt-3 text-lg font-medium text-gray-900">
+              No applications yet
+            </h3>
             <p className="mt-2 text-sm text-gray-500">
-              You haven't applied to any jobs yet. Start applying to see your applications here.
+              You haven't applied to any jobs yet. Start applying to see your
+              applications here.
             </p>
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {applications.map((app, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow duration-200">
+              <Card
+                key={index}
+                className="hover:shadow-md transition-shadow duration-200"
+              >
                 <CardHeader>
-                  <CardTitle className="capitalize">{app.role || "Unknown Role"}</CardTitle>
+                  <CardTitle className="capitalize">
+                    {app.role || "Unknown Role"}
+                  </CardTitle>
                   <CardDescription className="flex items-center gap-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -156,9 +170,13 @@ export default function ProfilePage() {
                   </p>
 
                   <div className="flex justify-between items-center">
-                    <Badge variant={getStatusVariant(app.status)} className="capitalize">
+                    <Badge
+                      variant={getStatusVariant(app.status)}
+                      className="capitalize"
+                    >
                       {app.status
-                        ? app.status.charAt(0).toUpperCase() + app.status.slice(1)
+                        ? app.status.charAt(0).toUpperCase() +
+                          app.status.slice(1)
                         : "Pending"}
                     </Badge>
                     <span className="text-xs text-gray-500">
