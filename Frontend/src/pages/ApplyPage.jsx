@@ -91,13 +91,16 @@ export default function UploadResumePage() {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("http://localhost:4000/user/apply_job", {
-        method: "POST",
-        body: data,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://job-application-mern.onrender.com/user/apply_job",
+        {
+          method: "POST",
+          body: data,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         localStorage.removeItem("selectedJob");

@@ -39,11 +39,14 @@ export default function AdminDashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:4000/user/getApplicants", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://job-application-mern.onrender.com/user/getApplicants",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const error = await response.json();
@@ -66,7 +69,7 @@ export default function AdminDashboard() {
   const confirmDecision = async () => {
     try {
       const token = localStorage.getItem("token");
-      const url = `http://localhost:4000/user/${selectedDecision}/${selectedAppId}`;
+      const url = `https://job-application-mern.onrender.com/user/${selectedDecision}/${selectedAppId}`;
 
       const response = await fetch(url, {
         method: "PATCH",

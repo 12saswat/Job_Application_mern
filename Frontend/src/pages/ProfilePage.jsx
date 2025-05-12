@@ -19,12 +19,15 @@ export default function ProfilePage() {
       if (!token) return;
 
       try {
-        const response = await fetch("http://localhost:4000/user/profile", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://job-application-mern.onrender.com/user/profile",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const data = await response.json();
 
